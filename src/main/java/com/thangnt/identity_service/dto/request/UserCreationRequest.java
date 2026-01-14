@@ -1,0 +1,21 @@
+package com.thangnt.identity_service.dto.request;
+
+import com.thangnt.identity_service.validator.DobConstraint;
+import lombok.Data;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+
+import static com.thangnt.identity_service.common.Constant.INVALID_DOB;
+
+@Data
+public class UserCreationRequest {
+    String userName;
+    String password;
+    String firstName;
+    String lastName;
+    @DobConstraint(min = 18, message = "INVALID_DOB")
+    LocalDate dob;
+    Set<String> roles;
+}
