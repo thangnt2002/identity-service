@@ -60,12 +60,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public ApiResponse<AuthenticationResponse> authenticate(AuthenticationRequest request) {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         User user = userRepository.findByUsername(request.getUsername());
         if(user == null){
             throw new NotFoundException(404);
         }
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        boolean isAuthenticated = encoder.matches(request.getUsername(), user.getPassword());
+        boolean isAuthenticated = passwordEncoder.matches(request.getPassword(), user.getPassword());
 
         if(!isAuthenticated) {
             throw new UnauthorizedException(401);

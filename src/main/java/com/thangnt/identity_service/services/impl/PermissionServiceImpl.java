@@ -4,7 +4,6 @@ import com.thangnt.identity_service.dto.ApiResponse;
 import com.thangnt.identity_service.dto.request.PermissionCreationRequest;
 import com.thangnt.identity_service.dto.response.PermissionResponse;
 import com.thangnt.identity_service.entities.Permission;
-import com.thangnt.identity_service.exception.NotFoundException;
 import com.thangnt.identity_service.mapper.PermissionMapper;
 import com.thangnt.identity_service.repositories.PermissionRepository;
 import com.thangnt.identity_service.services.PermissionService;

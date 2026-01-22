@@ -17,6 +17,9 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import javax.crypto.spec.SecretKeySpec;
 
@@ -25,7 +28,7 @@ import javax.crypto.spec.SecretKeySpec;
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
-    private String[] PUBLIC_ENDPOINT = {"/auth/token", "/auth/introspect", "/auth/logout"};
+    private String[] PUBLIC_ENDPOINT = { "/auth/login" ,"/auth/token", "/auth/introspect", "/auth/logout"};
 
     @Value("${jwt.signerkey}")
     private String SIGNER_KEY;
@@ -78,7 +81,19 @@ public class SecurityConfiguration {
 //    }
 
     @Bean
+    CorsFilter corsFilter(){
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("http://localhost:3000");
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+
+        UrlBasedCorsConfigurationSource basedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        basedCorsConfigurationSource.registerCorsConfiguration("/**", configuration);
+        return new CorsFilter(basedCorsConfigurationSource);
+    }
+
+    @Bean
     PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(10);
     }
 }

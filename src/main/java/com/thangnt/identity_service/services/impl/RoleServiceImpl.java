@@ -1,17 +1,12 @@
 package com.thangnt.identity_service.services.impl;
 
 import com.thangnt.identity_service.dto.ApiResponse;
-import com.thangnt.identity_service.dto.request.PermissionCreationRequest;
 import com.thangnt.identity_service.dto.request.RoleCreationRequest;
-import com.thangnt.identity_service.dto.response.PermissionResponse;
 import com.thangnt.identity_service.dto.response.RoleResponse;
-import com.thangnt.identity_service.entities.Permission;
 import com.thangnt.identity_service.entities.Role;
-import com.thangnt.identity_service.mapper.PermissionMapper;
 import com.thangnt.identity_service.mapper.RoleMapper;
 import com.thangnt.identity_service.repositories.PermissionRepository;
 import com.thangnt.identity_service.repositories.RoleRepository;
-import com.thangnt.identity_service.services.PermissionService;
 import com.thangnt.identity_service.services.RoleService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
